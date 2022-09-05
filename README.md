@@ -1,1 +1,4 @@
 # react-xstate
+
+- react
+- vite
