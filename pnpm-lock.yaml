@@ -4,6 +4,7 @@ specifiers:
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^2.1.0
+  '@xstate/inspect': ^0.7.0
   '@xstate/react': ^3.0.1
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -12,6 +13,7 @@ specifiers:
   xstate: ^4.33.5
 
 dependencies:
+  '@xstate/inspect': 0.7.0_xstate@4.33.5
   '@xstate/react': 3.0.1_rq32lkiy6e3qvfqnk7z2r4e3pe
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -377,6 +379,20 @@ packages:
       - supports-color
     dev: true
 
+  /@xstate/inspect/0.7.0_xstate@4.33.5:
+    resolution: {integrity: sha512-3wrTf8TfBYprH1gBFdxmOQUBDpBazlICWvGdFzr8IHFL4MbiexEZdAsL2QC/WAmW9BqNYTWTwgfbvKHKg+FrlA==}
+    peerDependencies:
+      '@types/ws': ^8.0.0
+      ws: ^8.0.0
+      xstate: ^4.32.0
+    peerDependenciesMeta:
+      '@types/ws':
+        optional: true
+    dependencies:
+      fast-safe-stringify: 2.1.1
+      xstate: 4.33.5
+    dev: false
+
   /@xstate/react/3.0.1_rq32lkiy6e3qvfqnk7z2r4e3pe:
     resolution: {integrity: sha512-/tq/gg92P9ke8J+yDNDBv5/PAxBvXJf2cYyGDByzgtl5wKaxKxzDT82Gj3eWlCJXkrBg4J5/V47//gRJuVH2fA==}
     peerDependencies:
@@ -681,6 +697,10 @@ packages:
     resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
     engines: {node: '>=0.8.0'}
     dev: true
+
+  /fast-safe-stringify/2.1.1:
+    resolution: {integrity: sha512-W+KJc2dmILlPplD/H4K9l9LcAHAfPtP6BY84uVLXQ6Evcz9Lcg33Y2z1IVblT6xdY54PXYVHEv+0Wpq8Io6zkA==}
+    dev: false
 
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
