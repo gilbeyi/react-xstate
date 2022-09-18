@@ -6,8 +6,8 @@ import { InputCustomerInfo } from './customer/inputCustomerInfo'
 import { CustomerStateContext } from './customerState'
 
 // TODO: refactor any
-const inputSelector = (state: any) => {
-  return state.matches('input')
+const editSelector = (state: any) => {
+  return state.matches('edit')
 }
 // TODO: refactor any
 const confirmSelector = (state: any) => {
@@ -21,14 +21,14 @@ export const CustomerContainer = () => {
 
   const [ value, setValue ] = useState('')
 
-  const isInput = useSelector(service.customerService, inputSelector)
+  const isEdit = useSelector(service.customerService, editSelector)
   const isConfirm = useSelector(service.customerService, confirmSelector)
 
   const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
   }
 
-  const input= () => {
+  const confirm= () => {
     send({
       type: 'CONFIRM',
       value: {
@@ -39,7 +39,7 @@ export const CustomerContainer = () => {
   const cancel= () => {
     send('CANCEL')
   }
-  const confirm = () => {
+  const complete = () => {
     send('COMPLETE')
   }
   const returnInput = () => {
@@ -60,11 +60,11 @@ export const CustomerContainer = () => {
       />
 
       <div>
-        {isInput && (
+        {isEdit && (
           <button
-            onClick={input}
+            onClick={confirm}
           >
-            input
+            confirm
           </button>
         )}
     
@@ -76,14 +76,14 @@ export const CustomerContainer = () => {
               cancel
             </button>
             <button
-              onClick={confirm}
+              onClick={complete}
             >
-              confirm
+              complete
             </button>
           </>
         )}
 
-        {!isInput && !isConfirm && (
+        {!isEdit && !isConfirm && (
           <button
             onClick={returnInput}
           >
