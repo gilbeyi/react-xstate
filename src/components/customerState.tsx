@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const CustomerStateProvider = (props: Props) => {
-  const customerService = useInterpret(customerMachine);
+  const customerService = useInterpret(customerMachine, { devTools: true });
 
   return (
     <CustomerStateContext.Provider value={{ customerService }}>
