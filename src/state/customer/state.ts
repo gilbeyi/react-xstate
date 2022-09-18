@@ -1,7 +1,8 @@
-import { assign, createMachine, send } from 'xstate'
+import { createMachine } from 'xstate'
 
 import { CustomerEvent } from './types'
 import { CustomerContext, customerContextDefault } from './context'
+import { setValue } from './actions'
 
 export const customerMachine = createMachine<
   CustomerContext,
@@ -10,10 +11,10 @@ export const customerMachine = createMachine<
   {
     id: 'customer',
     description: 'customer information',
-    initial: 'input',
+    initial: 'edit',
     context: {...customerContextDefault},
     states: {
-      input: {
+      edit: {
         on: {
           CONFIRM: {
             target: 'confirm',
@@ -27,14 +28,14 @@ export const customerMachine = createMachine<
             target: 'completed'
           },
           CANCEL: {
-            target: 'input'
+            target: 'edit'
           }
         }
       },
       completed: {
         on: {
           RESET: { 
-            target: 'input',
+            target: 'edit',
             actions: 'setValue'
           }
         }
@@ -43,11 +44,7 @@ export const customerMachine = createMachine<
   },
   {
     actions: {
-      setValue: assign((_context, event) => {
-        return {
-          customerInfo: {...event.value}
-        }
-      })
+      setValue
     }
   }
 )
