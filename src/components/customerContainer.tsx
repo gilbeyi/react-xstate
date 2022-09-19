@@ -1,16 +1,16 @@
 import { ChangeEvent, useContext, useState } from 'react'
+import { State } from 'xstate'
 import { useActor, useSelector } from '@xstate/react'
 
 import { InputCustomerInfo } from './customer/inputCustomerInfo'
 
 import { CustomerStateContext } from './customerState'
+import { CustomerContext } from '../state/customer/context'
 
-// TODO: refactor any
-const editSelector = (state: any) => {
+const editSelector = (state: State<CustomerContext>) => {
   return state.matches('edit')
 }
-// TODO: refactor any
-const confirmSelector = (state: any) => {
+const confirmSelector = (state: State<CustomerContext>) => {
   return state.matches('confirm')
 }
 

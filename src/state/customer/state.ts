@@ -1,12 +1,13 @@
 import { createMachine } from 'xstate'
 
-import { CustomerEvent } from './types'
+import { CustomerEvent, CustomerState } from './types'
 import { CustomerContext, customerContextDefault } from './context'
 import { setValue } from './actions'
 
 export const customerMachine = createMachine<
   CustomerContext,
-  CustomerEvent
+  CustomerEvent,
+  CustomerState
 >(
   {
     id: 'customer',
