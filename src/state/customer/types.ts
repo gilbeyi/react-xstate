@@ -1,3 +1,5 @@
+import { CustomerContext } from './context'
+
 export type CustomerInfo = {
   name: string
 }
@@ -7,3 +9,17 @@ export type CustomerEvent =
   | { type: 'CANCEL', value: CustomerInfo }
   | { type: 'COMPLETE', value: CustomerInfo }
   | { type: 'RESET', value: CustomerInfo }
+
+export type CustomerState =
+  | {
+      value: 'edit',
+      context: CustomerContext
+    }
+  | {
+      value: 'confirm',
+      context: CustomerContext
+    }
+  | {
+      value: 'completed',
+      context: CustomerContext
+    }
