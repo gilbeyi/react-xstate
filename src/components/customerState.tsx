@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode } from 'react'
+import { createContext, ReactNode } from 'react'
 import { InterpreterFrom } from 'xstate'
 import { useInterpret } from '@xstate/react'
 
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const CustomerStateProvider = (props: Props) => {
-  const customerService = useInterpret(customerMachine);
+  const customerService = useInterpret(customerMachine, { devTools: true });
 
   return (
     <CustomerStateContext.Provider value={{ customerService }}>
