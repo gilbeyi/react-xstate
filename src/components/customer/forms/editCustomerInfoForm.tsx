@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react'
 
-import { input } from '../../../styles'
+import { text } from '@/styles'
 
 type Props = {
   value: string
@@ -10,7 +10,7 @@ type Props = {
 
 export const EditCustomerInfoForm = (props: Props) => {
   const styles = {
-    input
+    input: text
   }
 
   return (
