@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.4",
     "@xstate/inspect": "^0.7.0",
     "@xstate/react": "^3.0.1",
     "react": "^18.2.0",
