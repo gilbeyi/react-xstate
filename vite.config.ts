@@ -6,5 +6,12 @@ export default defineConfig({
   server: {
     open: true
   },
-  plugins: [react()]
+  plugins: [react({
+    jsxImportSource: '@emotion/react'
+  })],
+  esbuild: {
+    logOverride: {
+      'this-is-undefined-in-esm': 'silent'
+    }
+  }
 })
