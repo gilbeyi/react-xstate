@@ -2,10 +2,10 @@ import { ChangeEvent, useContext, useState } from 'react'
 import { State } from 'xstate'
 import { useActor, useSelector } from '@xstate/react'
 
-import { InputCustomerInfo } from './customer/inputCustomerInfo'
+import { EditCustomerInfoForm } from './customer/forms/editCustomerInfoForm'
 
-import { CustomerStateContext } from './customerState'
 import { CustomerContext } from '../state/customer/context'
+import { CustomerStateContext } from './customerState'
 
 const editSelector = (state: State<CustomerContext>) => {
   return state.matches('edit')
@@ -54,10 +54,12 @@ export const CustomerContainer = () => {
 
   return (
     <div>
-      <InputCustomerInfo
-        value={value}
-        onChange={inputChange}
-      />
+      {isEdit && (
+        <EditCustomerInfoForm
+          value={value}
+          onChange={inputChange}
+        />
+      )}
 
       <div>
         {isEdit && (
