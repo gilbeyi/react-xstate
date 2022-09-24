@@ -48,7 +48,7 @@ export const EditCustomerInfo = ({
       minHeight: '280px'
     }),
     inputBlock: css({
-      marginBottom: '10px'
+      marginBottom: '20px'
     }),
     label: css({
       display: 'block',
