@@ -1,7 +1,7 @@
 import './App.css'
 
-import { CustomerStateProvider } from './components/customerState'
-import { CustomerContainer } from './components/customerContainer'
+import { CustomerStateProvider } from './components/customer/customerState'
+import { CustomerContainer } from './components/customer/customerContainer'
 
 function App() {
   return (

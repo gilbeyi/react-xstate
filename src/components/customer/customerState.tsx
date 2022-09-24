@@ -2,7 +2,7 @@ import { createContext, ReactNode } from 'react'
 import { InterpreterFrom } from 'xstate'
 import { useInterpret } from '@xstate/react'
 
-import { customerMachine } from '../state/customer'
+import { customerMachine } from '../../state/customer'
 
 export const CustomerStateContext = createContext({
   customerService: {} as InterpreterFrom<typeof customerMachine> }

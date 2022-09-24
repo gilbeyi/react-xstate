@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { State } from 'xstate'
 import { useActor, useSelector } from '@xstate/react'
 
-import { CustomerStateContext } from '@/components/customerState'
+import { CustomerStateContext } from '@/components/customer/customerState'
 import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
 
 import { CustomerContext, CustomerInfo, customerInfoDefault } from '@/state/customer/'
