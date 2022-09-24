@@ -1,6 +1,11 @@
 #root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+}
+
+.wrapper {
+  width: 640px;
+  margin: 80px auto 50px;
 }

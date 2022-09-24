@@ -5,8 +5,8 @@ import { CustomerContainer } from './components/customerContainer'
 
 function App() {
   return (
-    <div className="App">
-      <h1>XState</h1>
+    <div className="wrapper">
+      <h1>XState Demo</h1>
       <CustomerStateProvider>
         <CustomerContainer />
       </CustomerStateProvider>
