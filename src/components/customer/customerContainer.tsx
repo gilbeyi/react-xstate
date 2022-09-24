@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { State } from 'xstate'
 import { useActor, useSelector } from '@xstate/react'
 
@@ -22,6 +22,10 @@ export const CustomerContainer = () => {
 
   const [ customerInfo, setCustomerInfo ] = useState(customerInfoDefault)
 
+  useEffect(() => {
+    send('INIT')
+  }, [])
+
   const isEdit = useSelector(service.customerService, editSelector)
   const isConfirm = useSelector(service.customerService, confirmSelector)
 
@@ -44,8 +48,7 @@ export const CustomerContainer = () => {
   const reset = () => {
     setCustomerInfo(customerInfoDefault)
     send({
-      type: 'RESET',
-      value: customerInfoDefault
+      type: 'RESET'
     })
   }
 
