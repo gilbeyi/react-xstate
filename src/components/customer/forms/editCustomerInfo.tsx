@@ -1,8 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 
-import { text } from '@/styles'
 import { css } from '@emotion/react'
 
+import { text } from '@/styles'
 import { CustomerInfo } from '@/state/customer/'
 
 type Props = {
@@ -11,12 +11,16 @@ type Props = {
   onChange: (value: CustomerInfo) => void
 }
 
-export const EditCustomerInfo = (props: Props) => {
-  const [ name, setName ] = useState(props.customerInfo.name)
-  const [ address, setAddress ] = useState(props.customerInfo.address)
+export const EditCustomerInfo = ({
+  customerInfo,
+  disabled,
+  onChange
+}: Props) => {
+  const [ name, setName ] = useState(customerInfo.name)
+  const [ address, setAddress ] = useState(customerInfo.address)
 
   useEffect(() => {
-    props.onChange({
+    onChange({
       name,
       address
     })
@@ -30,6 +34,9 @@ export const EditCustomerInfo = (props: Props) => {
   }
 
   const styles = {
+    wrapper: css({
+      minHeight: '280px'
+    }),
     inputBlock: css({
       marginBottom: '10px'
     }),
@@ -43,7 +50,7 @@ export const EditCustomerInfo = (props: Props) => {
   }
 
   return (
-    <div>
+    <div css={styles.wrapper}>
       <div css={styles.inputBlock}>
         <label
           htmlFor='name'
@@ -53,10 +60,10 @@ export const EditCustomerInfo = (props: Props) => {
         </label>
         <input
           id='name'
-          value={props.customerInfo.name}
-          disabled={props.disabled}
-          onChange={changeName}
+          value={customerInfo.name}
+          disabled={disabled}
           css={styles.input}
+          onChange={changeName}
         />
       </div>
       <div css={styles.inputBlock}>
@@ -66,10 +73,10 @@ export const EditCustomerInfo = (props: Props) => {
           address
         </label>
         <input
-          value={props.customerInfo.address}
-          disabled={props.disabled}
-          onChange={changeAddress}
+          value={customerInfo.address}
+          disabled={disabled}
           css={styles.input}
+          onChange={changeAddress}
         />
       </div>
     </div>
