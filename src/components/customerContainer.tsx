@@ -1,11 +1,11 @@
-import { ChangeEvent, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { State } from 'xstate'
 import { useActor, useSelector } from '@xstate/react'
 
-import { EditCustomerInfoForm } from './customer/forms/editCustomerInfoForm'
+import { CustomerStateContext } from '@/components/customerState'
+import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
 
-import { CustomerContext } from '../state/customer/context'
-import { CustomerStateContext } from './customerState'
+import { CustomerContext, CustomerInfo, customerInfoDefault } from '@/state/customer/'
 
 const editSelector = (state: State<CustomerContext>) => {
   return state.matches('edit')
@@ -19,44 +19,41 @@ export const CustomerContainer = () => {
   const [ state ] = useActor(service.customerService)
   const { send } = service.customerService
 
-  const [ value, setValue ] = useState('')
+  const [ customerInfo, setCustomerInfo ] = useState(customerInfoDefault)
 
   const isEdit = useSelector(service.customerService, editSelector)
   const isConfirm = useSelector(service.customerService, confirmSelector)
 
-  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value)
+  const inputChange = (customerInfo: CustomerInfo) => {
+    console.log(customerInfo)
+    setCustomerInfo(customerInfo)
   }
 
   const confirm= () => {
-    send({
-      type: 'CONFIRM',
-      value: {
-        name: value
-      }
-    })
+    send('CONFIRM')
   }
   const cancel= () => {
     send('CANCEL')
   }
   const complete = () => {
-    send('COMPLETE')
+    send({
+        type: 'COMPLETE',
+        value: customerInfo
+    })
   }
   const returnInput = () => {
-    setValue('')
+    setCustomerInfo(customerInfoDefault)
     send({
       type: 'RESET',
-      value: {
-        name: ''
-      }
+      value: customerInfoDefault
     })
   }
 
   return (
-    <div>
+    <>
       {isEdit && (
-        <EditCustomerInfoForm
-          value={value}
+        <EditCustomerInfo
+          customerInfo={customerInfo}
           onChange={inputChange}
         />
       )}
@@ -105,6 +102,6 @@ export const CustomerContainer = () => {
           context.customerInfo.name: {String(state.context.customerInfo.name)}
         </div>
       </div>
-    </div>
+    </>
   )
 }
