@@ -2,6 +2,7 @@ import { CustomerContext } from './context'
 
 export type CustomerInfo = {
   name: string
+  address: string
 }
 
 export type CustomerEvent = 
