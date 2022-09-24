@@ -4,6 +4,7 @@ import { useActor, useSelector } from '@xstate/react'
 
 import { CustomerStateContext } from '@/components/customer/customerState'
 import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
+import { ConfirmCustomerInfo } from '@/components/customer/forms/confirmCustomerInfo'
 import { Buttons } from '@/components/customer/parts/buttons'
 
 import { CustomerContext, CustomerInfo, customerInfoDefault } from '@/state/customer/'
@@ -58,6 +59,12 @@ export const CustomerContainer = () => {
         <EditCustomerInfo
           customerInfo={customerInfo}
           onChange={inputChange}
+        />
+      )}
+
+      {isConfirm && (
+        <ConfirmCustomerInfo
+          customerInfo={customerInfo}
         />
       )}
 
