@@ -18,15 +18,15 @@ export const customerMachine = createMachine<
       edit: {
         on: {
           CONFIRM: {
-            target: 'confirm',
-            actions: 'setValue'
+            target: 'confirm'
           }
         }
       },
       confirm: {
         on: {
           COMPLETE: {
-            target: 'completed'
+            target: 'completed',
+            actions: 'setValue'
           },
           CANCEL: {
             target: 'edit'

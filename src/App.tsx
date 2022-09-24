@@ -1,12 +1,12 @@
 import './App.css'
 
-import { CustomerStateProvider } from './components/customerState'
-import { CustomerContainer } from './components/customerContainer'
+import { CustomerStateProvider } from './components/customer/customerState'
+import { CustomerContainer } from './components/customer/customerContainer'
 
 function App() {
   return (
-    <div className="App">
-      <h1>XState</h1>
+    <div className="wrapper">
+      <h1>XState Demo</h1>
       <CustomerStateProvider>
         <CustomerContainer />
       </CustomerStateProvider>
