@@ -69,18 +69,6 @@ export const CustomerContainer = () => {
         complete={complete}
         reset={reset}
       />
-
-      <div>
-        <div>
-          state.value: {String(state.value)}
-        </div>
-        <div>
-          event.type: {String(state.event.type)}
-        </div>
-        <div>
-          context.customerInfo.name: {String(state.context.customerInfo.name)}
-        </div>
-      </div>
     </>
   )
 }
