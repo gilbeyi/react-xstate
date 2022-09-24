@@ -20,7 +20,7 @@ export const EditCustomerInfo = ({
 }: Props) => {
   const [ name, setName ] = useState(customerInfo.name)
   const [ address, setAddress ] = useState(customerInfo.address)
-  const [ gender, setGender ] = useState('1')
+  const [ gender, setGender ] = useState(customerInfo.gender)
 
   useEffect(() => {
     onChange({
@@ -71,6 +71,7 @@ export const EditCustomerInfo = ({
         <input
           id='name'
           value={customerInfo.name}
+          placeholder='your name'
           disabled={disabled}
           css={styles.input}
           onChange={changeName}
@@ -78,12 +79,15 @@ export const EditCustomerInfo = ({
       </div>
       <div css={styles.inputBlock}>
         <label
+          htmlFor='address'
           css={styles.label}
         >
           address
         </label>
         <input
+          id='address'
           value={customerInfo.address}
+          placeholder='your address'
           disabled={disabled}
           css={styles.input}
           onChange={changeAddress}

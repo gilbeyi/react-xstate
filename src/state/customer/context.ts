@@ -7,7 +7,7 @@ export interface CustomerContext {
 export const customerInfoDefault: CustomerInfo = {
   name: '',
   address: '',
-  gender: ''
+  gender: '9'
 }
 
 export const customerContextDefault = {
