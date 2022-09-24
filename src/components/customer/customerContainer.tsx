@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { State } from 'xstate'
-import { useActor, useSelector } from '@xstate/react'
+import { useSelector } from '@xstate/react'
 
 import { CustomerStateContext } from '@/components/customer/customerState'
 import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
@@ -18,7 +18,6 @@ const confirmSelector = (state: State<CustomerContext>) => {
 
 export const CustomerContainer = () => {
   const service = useContext(CustomerStateContext)
-  const [ state ] = useActor(service.customerService)
   const { send } = service.customerService
 
   const [ customerInfo, setCustomerInfo ] = useState(customerInfoDefault)
