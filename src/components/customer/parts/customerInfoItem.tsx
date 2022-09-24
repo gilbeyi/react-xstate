@@ -20,7 +20,7 @@ export const CustomerInfoItem = ({
       fontWeight: '600'
     }),
     value: css({
-      lineHeight: '20px',
+      lineHeight: '22px',
       marginBottom: '10px',
       padding: '8px',
       fontSize: '14px',
