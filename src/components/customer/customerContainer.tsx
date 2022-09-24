@@ -4,6 +4,7 @@ import { useSelector } from '@xstate/react'
 
 import { CustomerStateContext } from '@/components/customer/customerState'
 import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
+import { Completed } from '@/components/customer/forms/completed'
 import { ConfirmCustomerInfo } from '@/components/customer/forms/confirmCustomerInfo'
 import { Buttons } from '@/components/customer/parts/buttons'
 
@@ -14,6 +15,9 @@ const editSelector = (state: State<CustomerContext>) => {
 }
 const confirmSelector = (state: State<CustomerContext>) => {
   return state.matches('confirm')
+}
+const completedSelector = (state: State<CustomerContext>) => {
+  return state.matches('completed')
 }
 
 export const CustomerContainer = () => {
@@ -28,6 +32,7 @@ export const CustomerContainer = () => {
 
   const isEdit = useSelector(service.customerService, editSelector)
   const isConfirm = useSelector(service.customerService, confirmSelector)
+  const isCompleted = useSelector(service.customerService, completedSelector)
 
   const inputChange = (customerInfo: CustomerInfo) => {
     setCustomerInfo(customerInfo)
@@ -47,9 +52,7 @@ export const CustomerContainer = () => {
   }
   const reset = () => {
     setCustomerInfo(customerInfoDefault)
-    send({
-      type: 'RESET'
-    })
+    send('RESET')
   }
 
   return (
@@ -65,6 +68,10 @@ export const CustomerContainer = () => {
         <ConfirmCustomerInfo
           customerInfo={customerInfo}
         />
+      )}
+
+      {isCompleted && (
+        <Completed />
       )}
 
       <Buttons
