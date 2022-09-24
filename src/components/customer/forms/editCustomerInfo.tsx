@@ -1,9 +1,11 @@
 import { ChangeEvent, useEffect, useState } from 'react'
-
 import { css } from '@emotion/react'
+
+import { Radio } from '@/components/atoms/radio'
 
 import { text } from '@/styles'
 import { CustomerInfo } from '@/state/customer/'
+import { genderOptions } from '@/values'
 
 type Props = {
   customerInfo: CustomerInfo
@@ -18,19 +20,27 @@ export const EditCustomerInfo = ({
 }: Props) => {
   const [ name, setName ] = useState(customerInfo.name)
   const [ address, setAddress ] = useState(customerInfo.address)
+  const [ gender, setGender ] = useState('1')
 
   useEffect(() => {
     onChange({
       name,
-      address
+      address,
+      gender
     })
-  }, [name, address])
+  }, [name, address, gender])
 
   const changeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value)
   }
   const changeAddress = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value)
+  }
+  const changeGender = (e: ChangeEvent<HTMLInputElement>) => {
+    setGender(e.target.value)
+  }
+  const checked = (value: string) => {
+    return gender === value
   }
 
   const styles = {
@@ -77,6 +87,18 @@ export const EditCustomerInfo = ({
           disabled={disabled}
           css={styles.input}
           onChange={changeAddress}
+        />
+      </div>
+      <div css={styles.inputBlock}>
+        <label
+          css={styles.label}
+        >
+          gender
+        </label>
+        <Radio
+          values={genderOptions}
+          checked={checked}
+          onChange={changeGender}
         />
       </div>
     </div>
