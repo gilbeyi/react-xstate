@@ -34,7 +34,7 @@ export const Buttons = ({
           css={styles.button}
           onClick={confirm}
         >
-          confirm
+          confirmation
         </button>
       )}
 

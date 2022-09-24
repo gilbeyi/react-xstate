@@ -2,7 +2,7 @@ import { createMachine } from 'xstate'
 
 import { CustomerEvent, CustomerState } from './types'
 import { CustomerContext, customerContextDefault } from './context'
-import { setValue } from './actions'
+import { setValue, resetValue } from './actions'
 
 export const customerMachine = createMachine<
   CustomerContext,
@@ -12,9 +12,17 @@ export const customerMachine = createMachine<
   {
     id: 'customer',
     description: 'customer information',
-    initial: 'edit',
+    initial: 'initialize',
     context: {...customerContextDefault},
     states: {
+      initialize: {
+        on: {
+          INIT: {
+            target: 'edit',
+            actions: 'resetValue'
+          }
+        }
+      },
       edit: {
         on: {
           CONFIRM: {
@@ -37,7 +45,7 @@ export const customerMachine = createMachine<
         on: {
           RESET: { 
             target: 'edit',
-            actions: 'setValue'
+            actions: 'resetValue'
           }
         }
       }
@@ -45,7 +53,8 @@ export const customerMachine = createMachine<
   },
   {
     actions: {
-      setValue
+      setValue,
+      resetValue
     }
   }
 )

@@ -7,10 +7,11 @@ export type CustomerInfo = {
 }
 
 export type CustomerEvent = 
-  | { type: 'CONFIRM', value: CustomerInfo }
-  | { type: 'CANCEL', value: CustomerInfo }
+  | { type: 'INIT' }
+  | { type: 'CONFIRM' }
+  | { type: 'CANCEL' }
   | { type: 'COMPLETE', value: CustomerInfo }
-  | { type: 'RESET', value: CustomerInfo }
+  | { type: 'RESET' }
 
 export type CustomerState =
   | {
