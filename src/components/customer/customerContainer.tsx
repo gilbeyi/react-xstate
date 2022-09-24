@@ -4,6 +4,7 @@ import { useActor, useSelector } from '@xstate/react'
 
 import { CustomerStateContext } from '@/components/customer/customerState'
 import { EditCustomerInfo } from '@/components/customer/forms/editCustomerInfo'
+import { Buttons } from '@/components/customer/buttons'
 
 import { CustomerContext, CustomerInfo, customerInfoDefault } from '@/state/customer/'
 
@@ -25,7 +26,6 @@ export const CustomerContainer = () => {
   const isConfirm = useSelector(service.customerService, confirmSelector)
 
   const inputChange = (customerInfo: CustomerInfo) => {
-    console.log(customerInfo)
     setCustomerInfo(customerInfo)
   }
 
@@ -41,7 +41,7 @@ export const CustomerContainer = () => {
         value: customerInfo
     })
   }
-  const returnInput = () => {
+  const reset = () => {
     setCustomerInfo(customerInfoDefault)
     send({
       type: 'RESET',
@@ -58,39 +58,15 @@ export const CustomerContainer = () => {
         />
       )}
 
-      <div>
-        {isEdit && (
-          <button
-            onClick={confirm}
-          >
-            confirm
-          </button>
-        )}
-    
-        {isConfirm && (
-          <>
-            <button
-              onClick={cancel}
-            >
-              cancel
-            </button>
-            <button
-              onClick={complete}
-            >
-              complete
-            </button>
-          </>
-        )}
+      <Buttons
+        isEdit={isEdit}
+        isConfirm={isConfirm}
+        confirm={confirm}
+        cancel={cancel}
+        complete={complete}
+        reset={reset}
+      />
 
-        {!isEdit && !isConfirm && (
-          <button
-            onClick={returnInput}
-          >
-            return
-          </button>
-        )}
-      </div>
-      
       <div>
         <div>
           state.value: {String(state.value)}
