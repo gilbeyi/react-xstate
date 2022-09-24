@@ -15,6 +15,10 @@ export type CustomerEvent =
 
 export type CustomerState =
   | {
+      value: 'initialize',
+      context: CustomerContext
+    }
+  | {
       value: 'edit',
       context: CustomerContext
     }
@@ -23,6 +27,14 @@ export type CustomerState =
       context: CustomerContext
     }
   | {
+      value: 'regist',
+      context: CustomerContext
+    }
+  | {
       value: 'completed',
+      context: CustomerContext
+    }
+  | {
+      value: 'failure',
       context: CustomerContext
     }
