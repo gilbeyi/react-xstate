@@ -15,3 +15,7 @@ export const resetValue = assign<CustomerContext, CustomerEvent>((_context, _eve
     customerInfo: {...customerInfoDefault}
   }
 })
+
+export const errorHandler = (_context: CustomerContext, _event: CustomerEvent) => {
+  console.log('error')
+}

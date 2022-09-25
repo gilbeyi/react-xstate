@@ -2,8 +2,8 @@ import { createMachine } from 'xstate'
 
 import { CustomerEvent, CustomerState } from './types'
 import { CustomerContext, customerContextDefault } from './context'
-import { setValue, resetValue } from './actions'
-import { registration, errorHandler } from './services'
+import { setValue, resetValue, errorHandler } from './actions'
+import { registration } from './services'
 
 export const customerMachine = createMachine<
   CustomerContext,
@@ -63,14 +63,15 @@ export const customerMachine = createMachine<
         }
       },
       failure: {
-        entry: errorHandler
+        entry: 'errorHandler'
       }
     }
   },
   {
     actions: {
       setValue,
-      resetValue
+      resetValue,
+      errorHandler
     },
     services: {
       registration
