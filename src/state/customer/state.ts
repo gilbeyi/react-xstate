@@ -2,7 +2,8 @@ import { createMachine } from 'xstate'
 
 import { CustomerEvent, CustomerState } from './types'
 import { CustomerContext, customerContextDefault } from './context'
-import { setValue, resetValue } from './actions'
+import { setValue, resetValue, errorHandler } from './actions'
+import { registration } from './services'
 
 export const customerMachine = createMachine<
   CustomerContext,
@@ -33,13 +34,25 @@ export const customerMachine = createMachine<
       confirm: {
         on: {
           COMPLETE: {
-            target: 'completed',
+            target: 'regist',
             actions: 'setValue'
           },
           CANCEL: {
             target: 'edit'
           }
         }
+      },
+      regist: {
+        invoke: {
+          src: 'registration',
+          id: 'customerRegist',
+          onDone: {
+            target: 'completed'
+          },
+          onError: {
+            target: 'failure'
+          }
+        },
       },
       completed: {
         on: {
@@ -48,13 +61,20 @@ export const customerMachine = createMachine<
             actions: 'resetValue'
           }
         }
+      },
+      failure: {
+        entry: 'errorHandler'
       }
     }
   },
   {
     actions: {
       setValue,
-      resetValue
+      resetValue,
+      errorHandler
+    },
+    services: {
+      registration
     }
   }
 )
