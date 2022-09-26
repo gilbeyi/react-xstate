@@ -2,8 +2,9 @@ import { createMachine } from 'xstate'
 
 import { CustomerEvent, CustomerState } from './types'
 import { CustomerContext, customerContextDefault } from './context'
-import { setValue, resetValue, errorHandler } from './actions'
-import { registration } from './services'
+import * as actions from './actions'
+import * as services from './services'
+import * as guards from './guards'
 
 export const customerMachine = createMachine<
   CustomerContext,
@@ -27,7 +28,8 @@ export const customerMachine = createMachine<
       edit: {
         on: {
           CONFIRM: {
-            target: 'confirm'
+            target: 'confirm',
+            cond: 'inputValid'
           }
         }
       },
@@ -68,13 +70,8 @@ export const customerMachine = createMachine<
     }
   },
   {
-    actions: {
-      setValue,
-      resetValue,
-      errorHandler
-    },
-    services: {
-      registration
-    }
+    actions,
+    services,
+    guards
   }
 )

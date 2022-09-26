@@ -8,7 +8,7 @@ export type CustomerInfo = {
 
 export type CustomerEvent = 
   | { type: 'INIT' }
-  | { type: 'CONFIRM' }
+  | { type: 'CONFIRM', value: CustomerInfo }
   | { type: 'CANCEL' }
   | { type: 'COMPLETE', value: CustomerInfo }
   | { type: 'RESET' }
