@@ -39,7 +39,10 @@ export const CustomerContainer = () => {
   }
 
   const confirm= () => {
-    send('CONFIRM')
+    send({
+      type: 'CONFIRM',
+      value: customerInfo
+    })
   }
   const cancel= () => {
     send('CANCEL')
